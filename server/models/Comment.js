@@ -8,7 +8,7 @@ const commentSchema = new Schema({
   },
   user: {
     type: userSchema,
-    // required: true
+    required: true
   },
   dateCreated: {
     type: Number,

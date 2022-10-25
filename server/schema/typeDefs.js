@@ -26,6 +26,7 @@ const typeDefs = gql`
         title: String!
         comments: [CommentType],
         dateCreated: Float!
+        user: UserType
     }
 
     #Queries
@@ -33,6 +34,7 @@ const typeDefs = gql`
         allUsers: [UserType]
         allPosts: [PostType]
         post(id: String!): PostType
+        posts(uid: String!): [PostType]
     }
 
     #Mutations
@@ -40,8 +42,8 @@ const typeDefs = gql`
         login( email: String! password: String!): String!
         addUser( email: String! username:String! password: String!): UserType
         addPost(content: String! title: String! uid: String!): PostType
-        deletePost(id: String! uid:String!): String!
-        addComment(content: String! pId: String uid:String!): PostType
+        deletePost(id: String! uid:String!): [PostType]
+        addComment(content: String! pId: String! uid:String!): PostType
         deleteComment(cId: String!, pId: String! uid:String!): PostType
     }
 `

@@ -7,6 +7,9 @@ query AllPosts {
     content
     title
     dateCreated
+    user{
+      username
+    }
     comments {
       content
       _id
@@ -14,6 +17,28 @@ query AllPosts {
     }
   }
 }
+`
+
+export const GET_ALL_POSTS_FOR_USER = gql`
+  query ($uid: String!) {
+    posts(uid: $uid) {
+      _id
+      content
+      title
+      dateCreated
+      user{
+        username
+      }
+      comments {
+        _id
+        user {
+          _id
+          email
+          username
+        }
+      }
+    }
+  }
 `
 
 export {GET_ALL_POSTS}

@@ -1,16 +1,29 @@
-import {useQuery, useLazyQuery} from '@apollo/client';
-import {useState} from 'react'
+import {useQuery, useLazyQuery, useMutation} from '@apollo/client';
+import {useState, useContext} from 'react'
 import {GET_ALL_POSTS} from '../GraphQL/Queries'
 import Post from './Post';
+import {POST} from '../GraphQL/Mutations'
+import { LoginContext } from '../Contexts/LoginContext';
 
-import {gql} from '@apollo/client'
 
 function PostList() {
     const [posts, setPosts] = useState([]);
+    const [title, setTitle] = useState();
+    const [content, setContent] = useState();
+    let {loggedIn, userId} = useContext(LoginContext);
+    let [addPost, {err}] = useMutation(POST, {
+      onCompleted: (data)=>{
+        let ccmts = posts.unshift(data.addPost);
+      }
+    });
     const {loading, error, data} = useQuery(GET_ALL_POSTS, {
       onCompleted: (qData)=>{
-        console.log(qData);
-        setPosts(qData.allPosts);
+        let cmts = [];
+        for(var i = 0; i < qData.allPosts.length; i++){
+            cmts.push(qData.allPosts[i])
+        }
+        cmts.reverse();
+        setPosts(cmts);
       },
       
     });
@@ -18,10 +31,26 @@ function PostList() {
     if(loading) return null;
     if(error) return "Error: "+error
   
+    let sendPost = () => {
+        addPost({
+            variables: {
+                title:title,
+                content: content,
+                uid: userId,
+            }
+        })
+    };
+
     return (
       <div className="post-list">
+          { loggedIn ? <div>
+              <input type='text' onChange={(e) => {setTitle(e.target.value)}}/><br/>
+              <textarea placeholder='Comment' onChange={(e)=>{setContent(e.target.value)}}></textarea>
+              <button onClick={()=>{sendPost()}}>Post</button>
+              </div> : ""
+          }
          {
-             posts.map(post => (<Post key={post._id} post={post}/>))
+             posts.map(post => (<Post owner={false} setPosts={setPosts} key={post._id} post={post}/>))
          }
       </div>
     );

@@ -6,7 +6,15 @@ const resolvers = {
     Query: {
         async allPosts(){
             const posts = await Post.find();
-            console.log("hello",posts);
+            return posts; 
+        },
+        async posts(_, args){
+            const all = await Post.find()
+            const posts = []
+            for(var i = 0; i < all.length; i++){
+                if(all[i].user && all[i].user._id == args.uid)
+                    posts.push(all[i]);
+            }
             return posts; 
         },
         allUsers(){
@@ -28,12 +36,19 @@ const resolvers = {
         },
         async deletePost(parent, args){
             const user = await User.findById(args.uid);
-            if(user)
+            if(user){
+                console.log(await Post.findById(args.id));
                 await Post.findByIdAndDelete(args.id);
-            else 
-                return "Post not deleted. Kindly log in first"
-            
-            return "Post deleted";
+                console.log(await Post.findById(args.id));
+            }  
+
+            const all = await Post.find()
+            const posts = []
+            for(var i = 0; i < all.length; i++){
+                if(all[i].user && all[i].user._id == args.uid)
+                    posts.push(all[i]);
+            }
+            return posts; 
         },
         async addPost(parent, args){
             const user = await User.findById(args.uid);
@@ -44,6 +59,7 @@ const resolvers = {
                     user: user
                 });
                 await post.save();
+                return post;
             }
             else 
                 return "Post not added. Kindly log in first"
@@ -56,19 +72,23 @@ const resolvers = {
                     { $pull: { comments: { _id: args.cId } } },
                     { new: true }
                   );
+                  post.save()
+                  console.log(post.comments,"Hello",await Post.findById(args.pId).comments);
                   return post;
             }
             else 
                 return "Comment not deleted. Kindly log in first"
         },
         async addComment(parent, args){
+            let user = await User.findById(args.uid);
             let comment = new Comment({
                 content: args.content,
+                user: user
             });
             let post = await Post.findById(args.pId)
             comment = await comment.save();
             post.comments.push(comment);
-            return post.save();
+            return await post.save();
         },
         async login(parent, args) {
             const user = await User.findOne({ email: args.email });
