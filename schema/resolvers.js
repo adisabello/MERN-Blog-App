@@ -53,11 +53,11 @@ const resolvers = {
             let post = await Post.findById(args.pId)
             comment = await comment.save();
             post.comments.push(comment);
-            return post.save();
+            return post.save();     
         }
         
     }
 
 }
 
-module.exports = {resolvers}
+module.exports = {resolvers}  

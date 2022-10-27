@@ -33,5 +33,5 @@ async function startApolloServer() {
 
   await new Promise(resolve => app.listen({ port: PORT }, resolve));
   console.log(`🌍 Now listening on localhost:${PORT}`);
-  return { server, app };
+  return { server, app }; 
 }

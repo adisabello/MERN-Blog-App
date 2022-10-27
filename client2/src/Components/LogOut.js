@@ -6,7 +6,7 @@ const LogOut = function(){
     let {setLoggedIn, setUserId} = useContext(LoginContext);
     setLoggedIn(false);
     setUserId("");
-    let nav = useNavigate();
+    let nav = useNavigate();        
     nav('../')
     return (
         <div>
