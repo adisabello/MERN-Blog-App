@@ -1,0 +1,31 @@
+{
+  "name": "mern-blog-app",
+  "version": "1.0.0",
+  "description": "The website I chose to create is a developers blog, where they come\r together to discuss and troubleshoot issues they come across in their\r professions.\r Members can register and share ideas by posting questions and respond\r to other people's posts by commenting.\r A member can manage their own posts, by deleting the posts or deleting\r specific comments\r Anyone can access the website to view the information, but in order to \r post or comment they need to be logged in.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
