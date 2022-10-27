@@ -9,6 +9,7 @@ import{
   ApolloProvider,
   createHttpLink
 } from "@apollo/client";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const link = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -17,10 +18,10 @@ const link = createHttpLink({
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: link
-})
-
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
@@ -31,4 +32,4 @@ root.render(
   </React.StrictMode>
 );
 
-
+serviceWorkerRegistration.register();

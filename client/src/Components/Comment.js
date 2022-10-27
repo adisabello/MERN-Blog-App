@@ -13,7 +13,7 @@ function Comment({comment, setComments, pid, owner}){
 
     let user = "_";
     if(comment.user){
-        user = user.username
+        user = comment.user.username
     }
     var datetime = new Date(comment.dateCreated)
     var date = datetime.toDateString();

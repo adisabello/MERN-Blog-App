@@ -20,6 +20,7 @@ const Login = function(){
             }else{
                 setLoggedIn(true)
                 setUserId(id)
+                localStorage.setItem("uid", id);
                 nav('../')
             }
         }

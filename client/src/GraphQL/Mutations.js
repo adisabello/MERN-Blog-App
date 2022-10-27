@@ -32,7 +32,9 @@ export const ADD_COMMENT = gql`
                 user {
                     username
                 }
+                dateCreated
             }
+            dateCreated
         }
     }
 `;
@@ -46,11 +48,12 @@ export const POST = gql`
             user {
                 username
             }
+            dateCreated
             comments {
                 _id
                 content
                 user {
-                username
+                    username
                 }
                 dateCreated
             }

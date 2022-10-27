@@ -43,9 +43,9 @@ function PostList() {
 
     return (
       <div className="post-list">
-          { loggedIn ? <div>
-              <input type='text' onChange={(e) => {setTitle(e.target.value)}}/><br/>
-              <textarea placeholder='Comment' onChange={(e)=>{setContent(e.target.value)}}></textarea>
+          { loggedIn ? <div className='post-form'>
+              <input type='text' placeholder='Post Title' onChange={(e) => {setTitle(e.target.value)}}/><br/>
+              <textarea placeholder='Post Content' onChange={(e)=>{setContent(e.target.value)}}></textarea>
               <button onClick={()=>{sendPost()}}>Post</button>
               </div> : ""
           }

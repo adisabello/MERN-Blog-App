@@ -30,7 +30,7 @@ const Register = function(){
     }
 
     return (
-        <div>
+        <div className='form'>
             <form action='#'>
                 <p>Username</p>
                 <input type="text" placeholder="Username" onChange={(e)=>{

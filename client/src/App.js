@@ -13,6 +13,11 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false)
   const [userId, setUserId] = useState("")
+  let uid = localStorage.getItem("uid");
+  if(uid && !loggedIn){
+    setUserId(uid);
+    setLoggedIn(true);
+  }
 
   return (
     <div className="app">

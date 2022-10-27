@@ -11,7 +11,7 @@ function Post({post, owner, setPosts}){
     const [content, setContent] = useState("");
     let user = "_";
     if(post.user){
-        user = user.username
+        user = post.user.username
     }
     var datetime = new Date(Number(post.dateCreated))
     var date = datetime.toDateString();
@@ -62,7 +62,7 @@ function Post({post, owner, setPosts}){
             <p>{post.content}</p>
 
             <div className='comments'>
-                { loggedIn ? <div><textarea placeholder='Comment' onChange={(e)=>{setContent(e.target.value)}}></textarea><button onClick={()=>{postComment()}}>Comment</button></div> : ""}
+                { loggedIn && !owner ? <div className='comment-form'><textarea placeholder='Comment' onChange={(e)=>{setContent(e.target.value)}}></textarea><br/><button onClick={()=>{postComment()}}>Comment</button></div> : ""}
                 {owner ? <button onClick={()=>{delPost()}}>Delete</button>: ""}
                 {
                     comments.map(comment => 

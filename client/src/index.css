@@ -23,10 +23,21 @@ html, body{
   background-color: #f3ca8d;;
   background-size: cover;
 }
-header{
+.header{
   background-color: #202020;
   color: orange;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.header ul li{
+  display: inline-block;
+  margin: 7px;
+}
+.header ul li a{
+  color: orange;
+  text-decoration: none;
+  cursor: pointer;
 }
 .post-list{
   width: 80%;
@@ -73,4 +84,36 @@ header{
   color: orange;
   padding-right: 10px;
   font-size: 8pt;
+}
+.form{
+  width: 300px;
+  margin: 20px auto;
+  text-align: center;
+  box-shadow: 0 0 5px grey;
+  padding: 20px 3px;
+  background-color: #202020;
+  color: orange;
+}
+.form input, .form button{
+  padding: 5px;
+  margin: 5px;
+  text-align:  center;
+}
+
+.post-form input, .post-form textarea{
+  width: 90%;
+  margin: 7px auto;
+  padding: 5px;
+  border-radius: 7px;
+}
+.post-form button, .comments button{
+  padding: 5px;
+}
+.comment-form textarea{
+  width: 80%;
+  padding: 5px;
+  border-radius: 7px;
+}
+.comments button{
+  margin-bottom: 10px;
 }

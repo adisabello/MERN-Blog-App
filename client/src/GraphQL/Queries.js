@@ -31,11 +31,11 @@ export const GET_ALL_POSTS_FOR_USER = gql`
       }
       comments {
         _id
+        content
         user {
-          _id
-          email
           username
         }
+        dateCreated
       }
     }
   }
