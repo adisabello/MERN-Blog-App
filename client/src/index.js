@@ -12,7 +12,7 @@ import{
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const link = createHttpLink({
-  uri: '/graphql'
+ uri: 'http://localhost:3001/graphql' 
 });
 
 const client = new ApolloClient({
