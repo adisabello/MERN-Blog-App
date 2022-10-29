@@ -27,7 +27,7 @@ export const GET_ALL_POSTS_FOR_USER = gql`
       title
       dateCreated
       user{
-        username
+        username  
       }
       comments {
         _id

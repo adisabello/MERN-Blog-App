@@ -92,7 +92,7 @@ mutation($cId: String!, $pId: String!, $uid: String!){
         user {
           username
         }
-        dateCreated
+        dateCreated           
       }
     }
   }

@@ -18,7 +18,7 @@ const resolvers = {
             return posts; 
         },
         allUsers(){
-            return User.find();
+            return User.find();          
         },
         post(parent, args){
             return Post.findById(args.id);

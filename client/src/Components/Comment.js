@@ -38,4 +38,4 @@ function Comment({comment, setComments, pid, owner}){
 
 }
 
-export default Comment;
+export default Comment;       

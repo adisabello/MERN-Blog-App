@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 
 db.once('open', async () => {
-  await startApolloServer();
+  await startApolloServer();  
 });
 
 async function startApolloServer() {
